@@ -15,11 +15,11 @@ import frc.robot.core.MAXSwerve.MaxSwerveConstants;
 import frc.robot.subsystems.Drivetrain;
 
 /** Reports our expected, desired, and actual poses to dashboards */
-public class Pose extends SubsystemBase {
-  private static Pose instance;
+public class PoseEstimator extends SubsystemBase {
+  private static PoseEstimator instance;
 
-  public static Pose getInstance() {
-    if (instance == null) instance = new Pose();
+  public static PoseEstimator getInstance() {
+    if (instance == null) instance = new PoseEstimator();
     return instance;
   }
 
@@ -32,7 +32,7 @@ public class Pose extends SubsystemBase {
   private final SwerveDrivePoseEstimator poseEstimator;
   private final Drivetrain drivetrain;
 
-  private Pose() {
+  private PoseEstimator() {
     // config = new PoseConfig();
     telemetry = new PoseTelemetry(this);
 
@@ -266,4 +266,7 @@ public class Pose extends SubsystemBase {
   public Vector<N3> createVisionMeasurementStdDevs(double x, double y, double theta) {
     return VecBuilder.fill(x, y, Units.degreesToRadians(theta));
   }
+
+  //TODO - Add Pose2d robotRelative to FieldRelative method to convert vision targets to pose on field.
+
 }
